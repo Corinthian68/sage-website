@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0a0d14;
+  --ink: #edeada;
+  --champagne: #d9c9a0;
+  --champagne-bright: #f0e2b8;
+  --silver: #b8bfc9;
+  --parchment: #ede8dc;
+  --dim: #8a8f9a;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-ink: var(--ink);
+  --color-champagne: var(--champagne);
+  --color-champagne-bright: var(--champagne-bright);
+  --color-silver: var(--silver);
+  --color-parchment: var(--parchment);
+  --color-dim: var(--dim);
+
+  --font-display: var(--font-display);
+  --font-ui: var(--font-ui);
+  --font-body: var(--font-body);
+}
+
+body {
+  background: var(--background);
+  color: var(--ink);
+  font-family: var(--font-body);
+}
