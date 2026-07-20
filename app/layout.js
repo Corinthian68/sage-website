@@ -20,10 +20,26 @@ const ebGaramond = EB_Garamond({
   variable: "--font-body",
 });
 
+const title = "Sage — by Cognition & Chaos";
+const description =
+  "Your writing coach. Voice and text coaching that finds your voice, never replaces it.";
+
 export const metadata = {
-  title: "Sage — by Cognition & Chaos",
-  description:
-    "Your writing coach. Voice and text coaching that finds your voice, never replaces it.",
+  metadataBase: new URL("https://sage.soulogos.com"),
+  title,
+  description,
+  openGraph: {
+    title,
+    description,
+    url: "https://sage.soulogos.com",
+    siteName: "Sage",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+  },
 };
 
 export default function RootLayout({ children }) {
