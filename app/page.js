@@ -56,8 +56,8 @@ export default function Home() {
           transition={{ duration: 1, delay: reduceMotion ? 0 : 2.4 }}
           className="mt-6 max-w-xl font-[family-name:var(--font-body)] text-lg sm:text-xl text-dim italic"
         >
-          Sage coaches your writing. She listens, questions, and helps you go
-          deeper. She never rewrites a word for you.
+          Sage coaches your writing. She listens, questions, and offers
+          suggestions to help you go deeper. She never writes a word for you.
         </motion.p>
 
         <motion.p
@@ -92,8 +92,8 @@ export default function Home() {
             </h3>
             <p>
               Paste a draft or upload a chapter. Sage reads closely, asks the
-              question that actually moves the piece forward, and never
-              hands you a rewrite.
+              question that actually moves the piece forward, and offers
+              suggestions, never a rewrite.
             </p>
           </div>
         </div>
