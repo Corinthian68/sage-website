@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 
@@ -9,6 +10,32 @@ export default function Home() {
   const reduceMotion = useReducedMotion();
 
   const letters = HEADLINE.split("");
+
+  const [status, setStatus] = useState("idle");
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setStatus("loading");
+
+    const form = e.target;
+    const email = form.email.value;
+
+    try {
+      const res = await fetch("https://formspree.io/f/xlgqnvbq", {
+        method: "POST",
+        headers: { Accept: "application/json", "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      if (res.ok) {
+        setStatus("submitted");
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
+  }
 
   return (
     <main className="min-h-screen flex flex-col items-center">
@@ -124,26 +151,38 @@ export default function Home() {
           Sage is in active development. Leave your email and we&apos;ll let
           you know the moment she&apos;s ready.
         </p>
-        <form
-          action="https://formspree.io/f/xlgqnvbq"
-          method="POST"
-          className="w-full flex flex-col sm:flex-row gap-3"
-        >
-          <input
-            type="email"
-            name="email"
-            required
-            suppressHydrationWarning
-            placeholder="you@example.com"
-            className="flex-1 bg-white/5 border border-white/15 rounded-md px-4 py-3 text-parchment placeholder:text-dim/60 font-[family-name:var(--font-body)] focus:outline-none focus:border-champagne/60"
-          />
-          <button
-            type="submit"
-            className="bg-champagne text-background font-[family-name:var(--font-ui)] font-semibold px-6 py-3 rounded-md hover:bg-champagne-bright transition-colors"
+        {status === "submitted" ? (
+          <div className="w-full bg-white/5 border border-white/15 rounded-md px-4 py-3 text-parchment font-[family-name:var(--font-body)]">
+            You&apos;re on the list. Sage will find you when she&apos;s ready.
+          </div>
+        ) : (
+          <form
+            onSubmit={handleSubmit}
+            className="w-full flex flex-col sm:flex-row gap-3"
           >
-            Notify me
-          </button>
-        </form>
+            <input
+              type="email"
+              name="email"
+              required
+              suppressHydrationWarning
+              placeholder="you@example.com"
+              disabled={status === "loading"}
+              className="flex-1 bg-white/5 border border-white/15 rounded-md px-4 py-3 text-parchment placeholder:text-dim/60 font-[family-name:var(--font-body)] focus:outline-none focus:border-champagne/60 disabled:opacity-60"
+            />
+            <button
+              type="submit"
+              disabled={status === "loading"}
+              className="bg-champagne text-background font-[family-name:var(--font-ui)] font-semibold px-6 py-3 rounded-md hover:bg-champagne-bright transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+            >
+              {status === "loading" ? "Sending…" : "Notify me"}
+            </button>
+          </form>
+        )}
+        {status === "error" && (
+          <p className="mt-3 text-sm text-dim font-[family-name:var(--font-body)]">
+            Something went wrong. Mind trying again?
+          </p>
+        )}
       </section>
 
       {/* FOOTER */}
