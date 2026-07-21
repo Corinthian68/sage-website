@@ -128,7 +128,10 @@ export default function Home() {
 
       {/* SCREENSHOT */}
       <section className="w-full max-w-3xl px-6 py-16 border-t border-white/10 flex flex-col items-center text-center">
-        <span className="font-[family-name:var(--font-ui)] text-xs tracking-[0.3em] uppercase text-champagne mb-6">
+        <span className="font-[family-name:var(--font-ui)] text-xs tracking-[0.3em] uppercase text-champagne mb-2">
+          Sage 1.0 Is Live
+        </span>
+        <span className="font-[family-name:var(--font-ui)] text-xs tracking-[0.2em] uppercase text-dim mb-6">
           Sage, running on your own desktop
         </span>
         <div className="relative w-full rounded-xl border border-white/10 shadow-[0_0_40px_rgba(217,201,160,0.15)] overflow-hidden">
@@ -145,15 +148,15 @@ export default function Home() {
       {/* COMING SOON / WAITLIST */}
       <section className="w-full max-w-lg px-6 py-16 border-t border-white/10 flex flex-col items-center text-center">
         <span className="font-[family-name:var(--font-ui)] text-xs tracking-[0.3em] uppercase text-champagne mb-3">
-          Coming Soon
+          Now in Beta
         </span>
         <p className="font-[family-name:var(--font-body)] text-dim mb-8">
-          Sage is in active development. Leave your email and we&apos;ll let
-          you know the moment she&apos;s ready.
+          Sage 1.0 is live. We&apos;re opening beta access to a small group
+          of writers first, leave your email and we&apos;ll get you set up.
         </p>
         {status === "submitted" ? (
           <div className="w-full bg-white/5 border border-white/15 rounded-md px-4 py-3 text-parchment font-[family-name:var(--font-body)]">
-            You&apos;re on the list. Sage will find you when she&apos;s ready.
+            You&apos;re on the list. We&apos;ll be in touch to get you started.
           </div>
         ) : (
           <form
